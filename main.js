@@ -5,14 +5,13 @@
 
 
 
-var media 
-if(localStorage.getItem("media") !=null){
-   media = json.parse(localStorage.getItem("media"))
-   displaymedia();
-}else{
-   media = []
-}
-
+   var media =[]
+   if(localStorage.getItem("social") !=null){
+      media = JSON.parse(localStorage.getItem("social"))
+      displaymedia();
+   }else{
+   media=[]
+   }
 
 function AddProduct()
 {
@@ -35,11 +34,6 @@ function AddProduct()
    media.splice(index, 1, social )
   }
 
-
-
-   
-  
-
    console.log(media);
 }
 
@@ -51,13 +45,14 @@ function displaymedia(){
        <td>${i}</td>
       <td>${media[i].name}</td>
        <td>
-           <button onclick="Update(${i})" class="btn btn-outline-warning">Update</button>
+           <button onclick="UpdateProduct(${i})" class="btn btn-outline-warning">Update</button>
        </td>
        <td>
-          <button onclick="visit(${i})" class="btn btn-outline-danger">Visit</button>
+          <button onclick="visitWebsite(${i})" class="btn btn-outline-danger">Visit  <i class="fa-solid fa-eye"></i></button>
+          
       </td>
        <td>
-          <button onclick= "deleteProduct(${i})" class="btn btn-outline-danger">Delete</button>
+          <button onclick= "deleteProduct(${i})" class="btn btn-outline-danger">Delete <i class="fa-solid fa-trash"></i>  </button>
       </td>
        </tr>`
       
@@ -74,7 +69,7 @@ function clearForm(){
 
 function deleteProduct(index) {
 media.splice(index, 1 )
-localStorage.setItem("media" , json.stringify(media))
+localStorage.setItem("media" , JSON.stringify(media))
 displaymedia()
 
 
@@ -91,7 +86,14 @@ function UpdateProduct(index){
 }
 
 
+function visitWebsite(index){
 
-// function visit(index){
-//    window.open(media[i].url)
-// }
+   window.open(media[index].url, '_blank');
+  
+
+}
+
+
+
+// var x= document.getElementsByClassName('test')
+// console.log(Array.from(x))
