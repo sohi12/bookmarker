@@ -2,8 +2,10 @@
 
    var input1 = document.getElementById("input1")
    var input2 = document.getElementById("input2")
-
-
+   var AddButton = document.getElementById("AddButton")
+   var btnupdate = document.getElementById("btnupdate")
+   var updateindex
+   var searchInput = document.getElementById("searchInput")
 
    var media =[]
    if(localStorage.getItem("social") !=null){
@@ -76,24 +78,61 @@ displaymedia()
 console.log(media);
 }
 
-
+function update(){
+   
+   var social= {
+      name: input1.value,
+      site : input2.value
+   }
+   media.splice(updateindex , 1 , social)
+   display()
+   AddButton.classList.remove('d-none')
+   btnupdate.classList.add('d-none')
+  
+   clearForm()
+}
 
 function UpdateProduct(index){
-   console.log(media[index]);
-
+   // console.log(media[index]);
+   updateindex = index
    input1.value = media[index].name
    input2.value = media[index].site
+   AddButton.classList.add('d-none')
+   btnupdate.classList.remove("d-none")
 }
 
 
 function visitWebsite(index){
-
-   window.open(media[index].url, '_blank');
+//  console.log(media[index].url );
+   window.open(media[index].url);
   
 
 }
 
 
+function search(){
+var term = searchInput.value
+   var trs = ""
+   for(var i=0 ; i<media.length; i++){
+      if(media[i].name.toLowerCase().includes(term.toLowerCase()))
+      trs += `<tr>
+      <td>${i}</td>
+     <td>${media[i].name}</td>
+      <td>
+          <button onclick="UpdateProduct(${i})" class="btn btn-outline-warning">Update</button>
+      </td>
+      <td>
+         <button onclick="visitWebsite(${i})" class="btn btn-outline-danger">Visit  <i class="fa-solid fa-eye"></i></button>
+         
+     </td>
+      <td>
+         <button onclick= "deleteProduct(${i})" class="btn btn-outline-danger">Delete <i class="fa-solid fa-trash"></i>  </button>
+     </td>
+      </tr>`
+     
+     
+  }
+   tBody.innerHTML = trs
+}
 
-// var x= document.getElementsByClassName('test')
-// console.log(Array.from(x))
+// console.log("facebook".toLowerCase.includes('face'.toLocaleLowerCase));

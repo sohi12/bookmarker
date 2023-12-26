@@ -18,7 +18,7 @@
   </head>
   <body>
 
-    <div class="header w-100 h-100">
+    <div class="header w-100">
         <div class="home">
             <h1 class="text-center py-5">Bookmarker</h1>
             <hr>
@@ -43,10 +43,13 @@
            <div class="inputs">
             <input class="form-control input border-rounded" type="text" placeholder="Bookmark Name" id="input2">
         </div>
-        <div class="button py-4">
+        <div class="button py-1">
             <button onclick="AddProduct()" id="AddButton" class="btn">subbmit</button>
         </div>
-        <input class="form-control" onkeyup="search(this.value)" type="text" placeholder="search by book mark name"> 
+        <div class="button py-1">
+            <button onclick="AddProduct()" id="btnupdate"  class="btn d-none" ondblclick="update()">Update</button>
+        </div>
+        <input id="searchInput" class="form-control" oninput="search()" type="text" placeholder="search by book mark name"> 
      <div>
         <hr class="hrr">
        </div>
